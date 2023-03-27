@@ -13,36 +13,32 @@
                     </ul>
                 </div>
                 @endif
-            <form method="POST" action="{{ route('user.update', $user->id) }}">
+            <form method="POST" action="{{ route('pengaduan.update', $pengaduan->id) }}">
                 @csrf
                 @method('PUT')
+                <h3> Form Pengaduan RT 02</h3>
                 <div class="form-floating mb-3">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="name" value="{{$user->name }}">
-                    <label for="name">Nama</label>
+                    <input type="text" name="id" class="form-control" id="id" placeholder="id pengaduan" value="{{$pengaduan->id }}">
+                    <label for="id">id pengaduan</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" name="username" class="form-control" id="username" placeholder="username"  value="{{$user->username }}">
-                    <label for="username">Username</label>
+                    <input type="date" name="tgl_pengaduan" class="form-control" id="tgl_pengaduan" placeholder="tanggal" value="{{$pengaduan->tgl_pengaduan }}">
+                    <label for="tgl_pengaduan">tanggal</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" name="telpon" class="form-control" id="telpon" placeholder="telpon" value="{{$user->telpon}}">
-                    <label for="telpon">Telpon</label>
+                    <input type="text" name="nik" class="form-control" id="nik" placeholder="nik" value="{{$pengaduan->nik}}">
+                    <label for="nik">nik</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email"name="email" class="form-control" id="email" placeholder="email" value="{{$user->email}}" >
-                    <label for="email">email</label>
+                    <input type="textarea"name="isi_pengaduan" class="form-control" id="isi_pengaduan" placeholder="isi pengaduan" value="{{$pengaduan->isi_pengaduan}}">
+                    <label for="isi_pengaduan">isi pengaduan</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
-                    <label for="password">Password</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                       <select id="level" class="form-control @error('level') is-invalid @enderror" name="level" required >
-                           <option value=""> Pilih Level User</option>
-                           <option value="admin"> admin</option>
-                           <option value="petugas"> petugas</option>
-                           <option value="masyarakat"> masyarakat</option>
+                       <select id="status" class="form-control @error('level') is-invalid @enderror" name="status" required >
+                           <option value=""> Pilih status</option>
+                           <option value="0">pending</option>
+                           <option value="proses"> proses</option>
+                           <option value="selesai"> selesai</option>
                        </select>                 
                            @error('level')
                                <span class="invalid-feedback" role="alert">
@@ -53,5 +49,6 @@
                    
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
-    </div>
+    </div>  
 </div>
+@endsection

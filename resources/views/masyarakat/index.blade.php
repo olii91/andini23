@@ -20,39 +20,36 @@
                </ul>
            </div>
        @endif
-       <a href="{{route('user.create')}}" class="btn btn-md btn-success mx-1 shadow"><i class="fa fa-lg fa-fw fa-plus"></i> Tambah User</a>
+       <a href="{{route('masyarakat.create')}}" class="btn btn-md btn-success mx-1 shadow"><i class="fa fa-lg fa-fw fa-plus"></i>Masyarakat</a>
        <br/> <br/>
        <div class="table-responsive">
            <table id="tabel_user" class="table table-striped table-hover table-condensed table-bordered">
                <thead style="background-color: darkgray">
                    <tr>
-                       <th>nik</th>
-                       <th>name</th>
-                       <th>usernama</th>
-                       <th>password</th>
+                       
+                       <th>NIK</th>
+                       <th>Username</th>
+                       <th>Nama</th>
                        <th>telpon</th>
-                       <th>Level</th>
                        <th class="text-center" width="70">Aksi</th>
                    </tr>
                </thead>
                <tbody>
                @foreach($masyarakat as $masyarakat)
-                   <tr>
-                       <td>{{$loop->iteration}}</td>
-                       <td>{{$masyarakat->name}}</td>
+               <tr>
+                       <td>{{$masyarakat->nik}}</td>
                        <td>{{$masyarakat->username}}</td>
-                       <td>{{$masyarakat->password}}</td>
-                       <td>{{$masyarakat->telpon}}</td>
-                       <td>{{$user->level}}</td>
-                       </td>
+                       <td>{{$masyarakat->name}}</td>
+                       <td>{{$masyarakat->tlpn}}</td>
                            <td>
-                           <a href="{{route('user.edit', $user->id)}}" class="btn btn-sm btn-primary" title="edit"><i class="fa-solid fa-pen"></i></a>
-                           <form action="{{ route('user.delete', $user->id) }}" 
+                           <a href="{{route('masyarakat.edit', $masyarakat->nik)}}" class="btn btn-md btn-primary" title="edit"><i class="fa-solid fa-pen"></i></a>
+                           <form action="{{ route('masyarakat.delete', $masyarakat->nik) }}" 
                             method="post" class="d-inline">
                              @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+                            <button type="submit" class="btn btn-md btn-danger"><i class="fa-solid fa-trash"></i></button>
                          </form>
+                    
                            </td>
                          </tr>
                        @endforeach
@@ -61,3 +58,4 @@
        </div>
    </div>
 </div>
+@stop

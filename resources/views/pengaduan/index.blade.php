@@ -1,9 +1,9 @@
 @extends('layouts.app')
-@section('content')
-    <h1 class="m-0 text-dark">Pengaduan</h1>
-@stop
 
 @section('content')
+<!-- icon -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+
 <div class="card">
    <div class="card-body">
        @if (session('status'))
@@ -18,20 +18,20 @@
                        <li>{{ $error }}</li>
                    @endforeach
                </ul>
-            </div>
+           </div>
        @endif
-       <a href="{{route('pengaduan.create')}}" class="btn btn-md btn-success mx-1 shadow"> <i class="fa fa-lg fa-fw fa-plus"></i> Tambah Pengaduan</a> 
+       <a href="{{route('pengaduan.create')}}" class="btn btn-md btn-success mx-1 shadow"><i class="fa fa-lg fa-fw fa-plus"></i> Pengadauan</a>
        <br/> <br/>
        <div class="table-responsive">
-           <table id="tabel_pengaduan" class="table table-striped table-hover table-condensed table-bordered">
-               <thead style="background-color: darkgrey">
+           <table id="tabel_user" class="table table-striped table-hover table-condensed table-bordered">
+               <thead style="background-color: darkgray">
                    <tr>
-                       <th>Tanggal_pengaduan</th>
-                       <th>Nama</th>
-                       <th>Isi_Laporan</th>
-                       <th>Tgl_tanggapan</th>
-                       <th>Tanggapan</th>
-                       <th>Nama_petugas</th>
+                       <th>No</th>
+                       <th>ID_Pengaduan</th>
+                       <th>Tanggal</th>
+                       <th>NIK</th>
+                       <th>Laporan</th>
+                       <th>Status</th>
                        <th class="text-center" width="70">Aksi</th>
                    </tr>
                </thead>
@@ -39,32 +39,20 @@
                @foreach($pengaduan as $pengaduan)
                    <tr>
                        <td>{{$loop->iteration}}</td>
-                       <td>{{$pengaduan->Tgl_pengaduan}}</td>
-                       <td>{{$pengaduan->Nama}}</td>
-                       <td>{{$pengaduan->isi_laporan}}</td>
-                       <td>{{$pengaduan->Tgl_tanggapan}}</td>
-                       <td>{{$pengaduan->Tanggapan}}</td>
-                       <td>{{$pengaduan->Nama_petugas}}</td>
+                       <td>{{$pengaduan->id}}</td>
+                       <td>{{$pengaduan->tgl_pengaduan}}</td>
+                       <td>{{$pengaduan->nik}}</td>
+                       <td>{{$pengaduan->isi_pengaduan}}</td>
+                       <td>{{$pengaduan->status}}</td>
                            <td>
-                               <a href="{{route('pengaduan.edit',$pengaduan->id)}}" class="btn btn-md btn-primary" title="Edit"><i class="fa-solid fa-edit"></i></a>
-                                   <div class="btn btn-xs btn-danger" data-toggle="modal" data-target="#hapususer{{$loop->iteration}}" icon="far fa-trash-alt" class="bg-danger">
-                                       {{-- Custom --}}
-                                   <div-modal id="hapuspengaduan{{$loop->iteration}}" title="Hapus Pengaduan" size="md" theme="orange"
-                                   icon="fas fa-bell" v-centered static-backdrop scrollable>
-                                   <div style="height:80px;">
-                                       <form action="{{route('pengaduan.delete',$pengaduan->id)}}" method="POST">
-                                           @csrf
-                                           @method('DELETE')
-                                             Apakah anda yakin akan menghapus user ini?</div>
-                                   <x-slot name="footerSlot">
-                                       <div type="submit" class="mr-auto" theme="danger" label="Hapus">
-                                       <div theme="primary" label="Batal" data-dismiss="modal">
-                                       </form>
-                                   </x-slot>
-                                </div>
+                           <a href="{{route('pengaduan.edit', $pengaduan->id)}}" class="btn btn-md btn-primary" title="edit"><i class="fa-solid fa-pen"></i></a>
+                           <form action="{{ route('pengaduan.delete', $pengaduan->id) }}" 
+                            method="post" class="d-inline">
+                             @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-md btn-danger"><i class="fa-solid fa-trash"></i></button>
+                         </form>
                            </td>
-                
-
                          </tr>
                        @endforeach
                </tbody>
@@ -72,10 +60,4 @@
        </div>
    </div>
 </div>
-
-
-@stop
-@section('plugins.Datatables', true)
-@section('js')
-   <script> $('#tabel_user').DataTable();</script>
 @stop

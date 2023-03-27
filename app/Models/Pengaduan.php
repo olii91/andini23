@@ -13,7 +13,7 @@ class Pengaduan extends Model
 
     use Notifiable;
 
-    protected $table='Masyarakat';
+    protected $table='pengaduan';
 
     protected $fillable=[
         'Tgl_pengaduan',

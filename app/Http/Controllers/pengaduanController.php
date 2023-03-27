@@ -38,28 +38,24 @@ class pengaduanController extends Controller
      */
     public function store(Request $request)
     {
+       
         $request->validate([
-            'Tgl_pengaduan' => ['required', 'string', 'unique:users'],
-            'Name' => ['required', 'string', 'max:255'],
-            'Isi_laporan' => ['required', 'string', 'Isi_laporan', 'max:255','unique:users'],
-            'Tgl_tanggapan'=>['required','numeric'],
-            'Tanggapan'=>['required','numeric'],
-            'Nama_petugas'=>['required','numeric'],
-       ]);
+            'tgl_pengaduan' => ['required', 'date'],
+            'nik' => ['required', 'string'],
+            'isi_pengaduan'=>['required','string'],
+        ]);
+
         try{
-            $pengaduan = new pengaduan;
-            $pengaduan->Tgl_pengaduan = $request->Tgl_pengaduan;
-            $pengaduan->Name= $request->Name;
-            $pengaduan->Isi_laporan = $request->Isi_laporan;
-            $pengaduan->Tgl_tanggapan=$request->Tgl_tanggapan;
-            $pengaduan->Tanggapan=$request->Tanggapan;
-            $pengaduan->Nama_petugas=$request->telpon;
+            $pengaduan = new Pengaduan;
+            $pengaduan->tgl_pengaduan= $request->tgl_pengaduan;
+            $pengaduan->nik = $request->nik;
+            $pengaduan->isi_pengaduan= $request->isi_pengaduan;
             $pengaduan->save();
+   }
+      catch(\Exception $e ){
+            return redirect()->back()->withErrors(['Data gagal disimpan']);
        }
-        catch(\Exception $e ){
-            return redirect()->back()->withErrors(['Pengaduan gagal disimpan']);
-       }
-        return redirect('pengaduan')->with('status','Pengaduan Berhasil ditambahkan');
+        return redirect('pengaduan')->with('status','Data Berhasil ditambahkan');
     }
 
     /**

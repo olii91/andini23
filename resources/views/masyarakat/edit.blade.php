@@ -13,49 +13,32 @@
                     </ul>
                 </div>
                 @endif
-            <form method="POST" action="{{ route('user.update', $user->id) }}">
+            <form method="POST" action="{{ route('masyarakat.update', $masyarakat->id) }}">
                 @csrf
-                @method('PUT')
+                <h3>Register Masyarakat</h3>
                 <div class="form-floating mb-3">
-                    <input type="text" name="nik" class="form-control" id="nik" placeholder="nik" value="{{$user->nik }}">
-                    <label for="nik">Nik</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="name" value="{{$user->name }}">
+                    <input type="text" name="name" class="form-control" id="name" placeholder="name" value="{{$masyarakat->name }}">
                     <label for="name">Nama</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" name="username" class="form-control" id="username" placeholder="username"  value="{{$user->username }}">
+                    <input type="text" name="nik" class="form-control" id="nik" placeholder="nik" value="{{$masyarakat->nik }}">
+                    <label for="nik">NIK</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="username" class="form-control" id="username" placeholder="username" value="{{$masyarakat->nik}}">
                     <label for="username">Username</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                    <input type="text" name="tlpn" class="form-control" id="tlpn" placeholder="telpon" value="{{$masyarakat->tlpn}}">
+                    <label for="tlpn">Telpon</label>
+                </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" >
                     <label for="password">Password</label>
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" name="telpon" class="form-control" id="telpon" placeholder="telpon" value="{{$user->telpon}}">
-                    <label for="telpon">Telpon</label>
-                <!-- </div>
-                <div class="form-floating mb-3">
-                    <input type="email"name="email" class="form-control" id="email" placeholder="email" value="{{$user->email}}" >
-                    <label for="email">email</label> -->
-                </div>
-
-                <div class="form-floating mb-3">
-                       <select id="level" class="form-control @error('level') is-invalid @enderror" name="level" required >
-                           <option value=""> Pilih Level User</option>
-                           <option value="admin"> admin</option>
-                           <option value="petugas"> petugas</option>
-                           <option value="masyarakat"> masyarakat</option>
-                       </select>                 
-                           @error('level')
-                               <span class="invalid-feedback" role="alert">
-                                   <strong>{{ $message }}</strong>
-                               </span>
-                            @enderror
-                    </div> 
                    
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
-    </div>
+    </div>  
 </div>
+@endsection

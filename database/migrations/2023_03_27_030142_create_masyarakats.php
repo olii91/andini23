@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMasyarakatTable extends Migration
+class CreateMasyarakats extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,12 @@ class CreateMasyarakatTable extends Migration
     public function up()
     {
         Schema::create('masyarakat', function (Blueprint $table) {
-
-            $table->char('nik')->primery();
-            $table->string('Name');
-            $table->string('Username');
-            $table->string('Password');
-            $table->string('Telepon');
-            $table->enum('level',['admin','petugas','masyarakat']);
-            
+            $table->char('nik',16);
+            $table->string('name',35);
+            $table->string('username',25)->unique();
+            $table->string('password');
+            $table->string('tlpn',13);
+            $table->timestamps();
         });
     }
 
@@ -32,6 +30,6 @@ class CreateMasyarakatTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('masyarakat');
+        Schema::dropIfExists('masyarakats');
     }
 }
